@@ -1,23 +1,23 @@
 {
-  "name": "GContacts Directory Exporter",
-  "description": "Exporter for exporting all Directory Items from Google Contacts.",
-  "version": "1.0",
-  "manifest_version": 3,
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": "hello_extensions.png"
-  },
-  "permissions": [
-    "tabs"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.contacts.google.com/"
-      ],
-      "js": [
-        "contacts.js"
-      ]
-    }
-  ]
+    "name": "GContacts Directory Exporter",
+    "description": "Exporter for exporting all Directory Items from Google Contacts.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "hello_extensions.png"
+    },
+    "permissions": [
+        "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.contacts.google.com/"
+            ],
+            "js": [
+                "contacts.js"
+            ]
+        }
+    ]
 }
