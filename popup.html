@@ -1,12 +1,80 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GContacts Directory Explorer</title>
-  </head>
-  <body>
-    <h1>For the fastest results use the smallest zoom level in the web page.</h1>
-    <button id="exportBtn">Export Directory</button>
-    <script src="popup.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GContacts Directory Exporter</title>
+        <style>
+            body {
+                width: 350px;
+                padding: 16px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 18px;
+                margin: 0 0 12px 0;
+                color: #202124;
+            }
+            .info {
+                background: #e8f0fe;
+                padding: 12px;
+                border-radius: 4px;
+                margin-bottom: 16px;
+                font-size: 13px;
+                color: #174ea6;
+            }
+            .button-group {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+            button {
+                flex: 1;
+                padding: 10px 16px;
+                background: #1a73e8;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 14px;
+                cursor: pointer;
+                font-weight: 500;
+            }
+            button:hover {
+                background: #1765cc;
+            }
+            button:disabled {
+                background: #dadce0;
+                cursor: not-allowed;
+            }
+            button#downloadBtn {
+                background: #34a853;
+            }
+            button#downloadBtn:hover {
+                background: #2d9348;
+            }
+            #status {
+                padding: 12px;
+                border-radius: 4px;
+                font-size: 13px;
+                min-height: 20px;
+                background: #f8f9fa;
+                color: #5f6368;
+            }
+            #status:empty {
+                display: none;
+            }
+        </style>
+      </head>
+      <body>
+          <h1>Google Contacts Exporter</h1>
+          <div class="info">
+              Tip: Use the smallest zoom level on the contacts page for fastest results.
+          </div>
+          <div class="button-group">
+              <button type="button" id="exportBtn">Export Contacts</button>
+              <button type="button" id="downloadBtn">Download CSV</button>
+          </div>
+          <div id="status"></div>
+          <script src="popup.js"></script>
+      </body>
 </html>
