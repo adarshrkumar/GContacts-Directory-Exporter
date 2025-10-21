@@ -29,6 +29,6 @@ window.queueExport = async function() {
             scroller.scrollTop.toString() + '/' + scroller.scrollHeight.toString() +
             ' = ' + (scroller.scrollTop / scroller.scrollHeight * 100).toString() + '%'
         );
-        await sleep(4000);
+        await sleep(1000);
     }
 }
