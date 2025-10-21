@@ -24,8 +24,6 @@ window.queueExport = async function() {
         }
 
         let iterationCount = 0;
-        let previousContactCount = 0;
-        let noChangeCount = 0;
 
         console.log('Beginning scroll and extraction...');
 
@@ -61,18 +59,7 @@ window.queueExport = async function() {
                 }
             }
 
-            // Check if we're making progress
             const currentContactCount = window.exportedContactsStorage.size;
-            if (currentContactCount === previousContactCount) {
-                noChangeCount++;
-                if (noChangeCount >= 3) {
-                    console.log('No new contacts found in last 3 iterations. Stopping.');
-                    break;
-                }
-            } else {
-                noChangeCount = 0;
-            }
-            previousContactCount = currentContactCount;
 
             // Scroll to next section
             scroller.scrollTo({
