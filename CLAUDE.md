@@ -32,19 +32,23 @@ The extension follows a simple three-component architecture:
 ## Key Implementation Details
 
 ### DOM Selectors
+
 The scraper relies on Google Contacts UI class names:
+
 - `.My2mLb`: Main scrollable container
 - `.ZvpjBb.C8Dkz`: Contacts list wrapper
 - `.XXcuqd`: Individual contact elements
 - Contact data extracted from `element.firstChild.childNodes[1-4]` (name, job, email, phone)
 
 ### Scrolling Strategy
+
 - Scrolls by one `clientHeight` at a time with smooth behavior
 - 4-second delay between scroll iterations to allow content to load
 - Continues until `scrollHeight - scrollTop <= clientHeight`
 - Logs progress to console as percentage
 
 ### Data Storage
+
 - Uses `window.exportedContactsStorage` Set with JSON-stringified contact objects
 - Set ensures deduplication of contacts across scroll iterations
 - Contact object structure: `{name, job, email, phone}`
