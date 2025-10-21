@@ -1,6 +1,6 @@
 {
-  "name": "Website Fixes",
-  "description": "Simple JS HTML Attribute Remover and CSS Adder",
+  "name": "GContacts Directory Exporter",
+  "description": "Exporter for exporting all Directory Items from Google Contacts.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
@@ -13,10 +13,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.contacts.google.com/",
-        "*://*.byuis.agilixbuzz.com/*",
-        "*://byuis.agilixbuzz.com/",
-        "*://byuis.agilixbuzz.com/*"
+        "*://*.contacts.google.com/"
       ],
       "js": [
         "contacts.js"
