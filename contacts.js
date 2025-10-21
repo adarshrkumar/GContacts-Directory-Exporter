@@ -5,112 +5,30 @@ function sleep(ms) {
 }
 
 window.queueExport = async function() {
-    try {
-        console.log('Starting Google Contacts export...');
+    window.exportedContactsStorage = new Set();
+    const scroller = document.querySelector('.My2mLb');
+    const contactsContainer = document.querySelector('.ZvpjBb.C8Dkz');
 
-        // Initialize storage
-        window.exportedContactsStorage = new Set();
-
-        // Find the scrollable container
-        const scroller = document.querySelector('.My2mLb');
-        if (!scroller) {
-            throw new Error('Scrollable container not found. Make sure you are on the Google Contacts directory page.');
-        }
-
-        // Find the contacts container
-        const contactsContainer = document.querySelector('.ZvpjBb.C8Dkz');
-        if (!contactsContainer) {
-            throw new Error('Contacts container not found. Make sure you are viewing the directory/contacts list.');
-        }
-
-        let iterationCount = 0;
-
-        console.log('Beginning scroll and extraction...');
-
-        while (scroller.scrollHeight - scroller.scrollTop > scroller.clientHeight) {
-            iterationCount++;
-
-            // Extract contacts from current view
-            const contactElements = contactsContainer.querySelectorAll('.XXcuqd');
-
-            if (contactElements.length === 0) {
-                console.warn('No contact elements found in iteration', iterationCount);
+    while (scroller.scrollHeight - scroller.scrollTop > scroller.clientHeight) {
+        for (let element of contactsContainer.querySelectorAll('.XXcuqd')) {
+            if (element.firstChild.childNodes.length == 1) {
+                continue;
             }
-
-            for (let element of contactElements) {
-                try {
-                    if (!element.firstChild || element.firstChild.childNodes.length <= 1) {
-                        continue;
-                    }
-
-                    const name = element.firstChild.childNodes[1]?.innerText || '';
-                    const job = element.firstChild.childNodes[2]?.innerText || '';
-                    const email = element.firstChild.childNodes[3]?.innerText || '';
-                    const phone = element.firstChild.childNodes[4]?.innerText || '';
-
-                    window.exportedContactsStorage.add(JSON.stringify({
-                        name: name,
-                        job: job,
-                        email: email,
-                        phone: phone
-                    }));
-                } catch (err) {
-                    console.warn('Error extracting contact data:', err);
-                }
-            }
-
-            const currentContactCount = window.exportedContactsStorage.size;
-
-            // Scroll to next section
-            scroller.scrollTo({
-                top: scroller.scrollTop + scroller.clientHeight,
-                behavior: 'smooth'
-            });
-
-            const progress = (scroller.scrollTop / scroller.scrollHeight * 100).toFixed(1);
-            console.log(
-                `Iteration ${iterationCount}: ${scroller.scrollTop}/${scroller.scrollHeight} (${progress}%) - ` +
-                `${currentContactCount} contacts collected`
-            );
-
-            await sleep(4000);
+            let name = element.firstChild.childNodes[1].innerText;
+            let job = element.firstChild.childNodes[2].innerText;
+            let email = element.firstChild.childNodes[3].innerText;
+            let phone = element.firstChild.childNodes[4].innerText;
+            window.exportedContactsStorage.add(JSON.stringify({'name': name, 'job': job, 'email': email, 'phone': phone}));
         }
-
-        // Final extraction at the bottom
-        const finalContactElements = contactsContainer.querySelectorAll('.XXcuqd');
-        for (let element of finalContactElements) {
-            try {
-                if (!element.firstChild || element.firstChild.childNodes.length <= 1) {
-                    continue;
-                }
-
-                const name = element.firstChild.childNodes[1]?.innerText || '';
-                const job = element.firstChild.childNodes[2]?.innerText || '';
-                const email = element.firstChild.childNodes[3]?.innerText || '';
-                const phone = element.firstChild.childNodes[4]?.innerText || '';
-
-                window.exportedContactsStorage.add(JSON.stringify({
-                    name: name,
-                    job: job,
-                    email: email,
-                    phone: phone
-                }));
-            } catch (err) {
-                console.warn('Error extracting contact data:', err);
-            }
-        }
-
-        console.log('Export complete!');
-        console.log(`Total contacts collected: ${window.exportedContactsStorage.size}`);
-        console.log('Access data via: Array.from(window.exportedContactsStorage).map(item => JSON.parse(item))');
-
-        return {
-            success: true,
-            count: window.exportedContactsStorage.size
-        };
-
-    } catch (error) {
-        console.error('Export failed:', error);
-        throw error;
+        scroller.scrollTo({
+            top: scroller.scrollTop + scroller.clientHeight,
+            behavior: 'smooth'
+        });
+        console.log(
+            'Completed iteration;',
+            scroller.scrollTop.toString() + '/' + scroller.scrollHeight.toString() +
+            ' = ' + (scroller.scrollTop / scroller.scrollHeight * 100).toString() + '%'
+        );
+        await sleep(4000);
     }
 }
