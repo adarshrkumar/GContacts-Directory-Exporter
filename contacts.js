@@ -1,3 +1,5 @@
+const delay = 1000;
+
 function sleep(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
@@ -29,6 +31,6 @@ window.queueExport = async function() {
             scroller.scrollTop.toString() + '/' + scroller.scrollHeight.toString() +
             ' = ' + (scroller.scrollTop / scroller.scrollHeight * 100).toString() + '%'
         );
-        await sleep(1000);
+        await sleep(delay);
     }
 }

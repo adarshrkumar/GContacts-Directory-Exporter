@@ -17,7 +17,8 @@
     "content_scripts": [
         {
             "matches": [
-                "*://contacts.google.com/"
+                "*://contacts.google.com/directory",
+                "*://contacts.google.com/directory/*"
             ],
             "js": [
                 "contacts.js"

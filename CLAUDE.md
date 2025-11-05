@@ -74,7 +74,7 @@ Three-component architecture:
 ### Manifest Configuration
 
 - **Permissions**: `activeTab`, `scripting` (for dynamic script injection)
-- **Host permissions**: `https://contacts.google.com/*`
+- **Host permissions**: `https://contacts.google.com/directory`
 - **Content scripts**: Auto-injects contacts.js on Google Contacts pages
 
 ## Known Limitations
