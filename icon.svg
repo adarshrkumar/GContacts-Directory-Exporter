@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+    <title>GContacts Directory Exporter</title>
+    <rect width="128" height="128" rx="28" fill="#0f766e"/>
+    <rect x="16" y="26" width="96" height="76" rx="10" fill="#ffffff"/>
+    <circle cx="42" cy="54" r="12" fill="#5eead4"/>
+    <path d="M22 92a20 20 0 0 1 40 0z" fill="#5eead4"/>
+    <rect x="70" y="44" width="32" height="7" rx="3.5" fill="#99f6e4"/>
+    <rect x="70" y="58" width="24" height="7" rx="3.5" fill="#99f6e4"/>
+    <circle cx="90" cy="88" r="17" fill="#f59e0b"/>
+    <rect x="87" y="76" width="6" height="12" fill="#ffffff"/>
+    <polygon points="79,87 101,87 90,99" fill="#ffffff"/>
+</svg>
